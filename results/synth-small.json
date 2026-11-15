@@ -1,0 +1,138 @@
+{
+ "config": "small",
+ "sram_bits": 235264,
+ "sram_macros": {
+  "tags_256x51": {
+   "depth": 256,
+   "width": 51
+  },
+  "data_256x256": {
+   "depth": 256,
+   "width": 256
+  },
+  "tags_512x50": {
+   "depth": 512,
+   "width": 50
+  },
+  "lines_512x256": {
+   "depth": 512,
+   "width": 256
+  }
+ },
+ "assumptions": {
+  "gate_ps": 50,
+  "lut_ns": 0.6
+ },
+ "generic": {
+  "gates": 230686,
+  "flip_flops": 26664,
+  "depth_gates": 83,
+  "critical_path_named_wires": [
+   "\\wb_0_bits_uop_pdst",
+   "$abc$699436$procmux$23445_Y[63]",
+   "...",
+   "\\wb_0_bits_uop_pdst",
+   "$abc$699436$procmux$23445_Y[63]"
+  ],
+  "fmax_mhz_estimate": 241.0,
+  "critical_path_signals": [
+   [
+    "wb_0_bits_uop_pdst",
+    1
+   ],
+   [
+    "23445_Y",
+    1
+   ]
+  ],
+  "seconds": 536.8,
+  "cells": {
+   "$_ANDNOT_": 58785,
+   "$_AND_": 15160,
+   "$_DFFE_PN_": 792,
+   "$_DFFE_PP_": 12350,
+   "$_DFF_P_": 911,
+   "$_MUX_": 64668,
+   "$_NAND_": 3358,
+   "$_NOR_": 13307,
+   "$_NOT_": 6371,
+   "$_ORNOT_": 2290,
+   "$_OR_": 57628,
+   "$_SDFFCE_PN0P_": 1,
+   "$_SDFFCE_PP0P_": 181,
+   "$_SDFFCE_PP1P_": 1,
+   "$_SDFFE_PP0N_": 126,
+   "$_SDFFE_PP0P_": 6646,
+   "$_SDFFE_PP1P_": 1153,
+   "$_SDFF_PP0_": 4374,
+   "$_SDFF_PP1_": 129,
+   "$_XNOR_": 1717,
+   "$_XOR_": 7402,
+   "data_256x256": 1,
+   "lines_512x256": 1,
+   "tags_256x51": 1,
+   "tags_512x50": 1
+  }
+ },
+ "xilinx": {
+  "luts": 73150,
+  "flip_flops": 26662,
+  "carry4": 551,
+  "dsp48": 0,
+  "muxf7_f8": 2058,
+  "depth_cells": 33,
+  "fmax_mhz_estimate": 50.5,
+  "critical_path_signals": [
+   [
+    "A",
+    12
+   ],
+   [
+    "f1",
+    11
+   ],
+   [
+    "f0",
+    7
+   ],
+   [
+    "rob_9_inst",
+    1
+   ],
+   [
+    "casez_tmp",
+    1
+   ],
+   [
+    "io_flush",
+    1
+   ],
+   [
+    "21657_Y",
+    1
+   ]
+  ],
+  "seconds": 1113.5,
+  "cells": {
+   "BUFG": 1,
+   "CARRY4": 551,
+   "FDRE": 25379,
+   "FDSE": 1283,
+   "IBUF": 326,
+   "INV": 304,
+   "LUT1": 81,
+   "LUT2": 5615,
+   "LUT3": 17531,
+   "LUT4": 5799,
+   "LUT5": 13240,
+   "LUT6": 30884,
+   "MUXF7": 1507,
+   "MUXF8": 551,
+   "OBUF": 2086,
+   "data_256x256": 1,
+   "lines_512x256": 1,
+   "tags_256x51": 1,
+   "tags_512x50": 1
+  }
+ }
+}

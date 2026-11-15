@@ -1,0 +1,158 @@
+{
+ "config": "inorder",
+ "sram_bits": 235264,
+ "sram_macros": {
+  "tags_256x51": {
+   "depth": 256,
+   "width": 51
+  },
+  "data_256x256": {
+   "depth": 256,
+   "width": 256
+  },
+  "tags_512x50": {
+   "depth": 512,
+   "width": 50
+  },
+  "lines_512x256": {
+   "depth": 512,
+   "width": 256
+  }
+ },
+ "assumptions": {
+  "gate_ps": 50,
+  "lut_ns": 0.6
+ },
+ "generic": {
+  "gates": 333558,
+  "flip_flops": 38385,
+  "depth_gates": 105,
+  "critical_path_named_wires": [
+   "\\wb_0_bits_uop_pdst",
+   "\\target",
+   "\\nextPc",
+   "$abc$918110$and$/root/silicon-build/generated/inorder/Core.sv:64527$25450_Y",
+   "...",
+   "\\wb_0_bits_uop_pdst",
+   "\\target",
+   "\\nextPc",
+   "$abc$918110$and$/root/silicon-build/generated/inorder/Core.sv:64527$25450_Y"
+  ],
+  "fmax_mhz_estimate": 190.5,
+  "critical_path_signals": [
+   [
+    "wb_0_bits_uop_pdst",
+    1
+   ],
+   [
+    "target",
+    1
+   ],
+   [
+    "nextPc",
+    1
+   ],
+   [
+    "25450_Y",
+    1
+   ]
+  ],
+  "seconds": 606.0,
+  "cells": {
+   "$_ANDNOT_": 90578,
+   "$_AND_": 18713,
+   "$_DFFE_PN_": 1048,
+   "$_DFFE_PP_": 18508,
+   "$_DFF_P_": 1253,
+   "$_MUX_": 88948,
+   "$_NAND_": 3963,
+   "$_NOR_": 13733,
+   "$_NOT_": 7851,
+   "$_ORNOT_": 2624,
+   "$_OR_": 96870,
+   "$_SDFFCE_PN0P_": 1,
+   "$_SDFFCE_PP0P_": 197,
+   "$_SDFFCE_PP1P_": 1,
+   "$_SDFFE_PP0N_": 126,
+   "$_SDFFE_PP0P_": 11403,
+   "$_SDFFE_PP1P_": 1217,
+   "$_SDFF_PP0_": 4486,
+   "$_SDFF_PP1_": 145,
+   "$_XNOR_": 1645,
+   "$_XOR_": 8633,
+   "data_256x256": 1,
+   "lines_512x256": 1,
+   "tags_256x51": 1,
+   "tags_512x50": 1
+  }
+ },
+ "xilinx": {
+  "luts": 104549,
+  "flip_flops": 38377,
+  "carry4": 589,
+  "dsp48": 0,
+  "muxf7_f8": 1616,
+  "depth_cells": 41,
+  "fmax_mhz_estimate": 40.7,
+  "critical_path_signals": [
+   [
+    "A",
+    29
+   ],
+   [
+    "X",
+    3
+   ],
+   [
+    "f1",
+    3
+   ],
+   [
+    "f0",
+    2
+   ],
+   [
+    "lq_7_sqTail",
+    1
+   ],
+   [
+    "_olderCount_T",
+    1
+   ],
+   [
+    "_best_T",
+    1
+   ],
+   [
+    "pick",
+    1
+   ],
+   [
+    "53069_Y",
+    1
+   ]
+  ],
+  "seconds": 476.6,
+  "cells": {
+   "BUFG": 1,
+   "CARRY4": 589,
+   "FDRE": 37014,
+   "FDSE": 1363,
+   "IBUF": 326,
+   "INV": 306,
+   "LUT1": 66,
+   "LUT2": 10946,
+   "LUT3": 19948,
+   "LUT4": 6973,
+   "LUT5": 19872,
+   "LUT6": 46744,
+   "MUXF7": 1249,
+   "MUXF8": 367,
+   "OBUF": 2088,
+   "data_256x256": 1,
+   "lines_512x256": 1,
+   "tags_256x51": 1,
+   "tags_512x50": 1
+  }
+ }
+}

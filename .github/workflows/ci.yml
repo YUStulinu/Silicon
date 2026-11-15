@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  cosim:
+    name: Chisel -> Verilator, co-simulated against Rivet (ISA tests, firmware, random programs)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Verilator, the RISC-V compiler and Java
+        run: sudo apt-get update && sudo apt-get install -y verilator gcc-riscv64-unknown-elf openjdk-17-jdk-headless python3-pytest
+      - name: Install sbt and Zig
+        run: sh tools/ci-setup.sh
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/coursier
+            ~/.ivy2/cache
+            ~/.sbt
+            ~/.cache/llvm-firtool
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: deps-${{ hashFiles('rtl/build.sbt', 'golden/Cargo.toml') }}
+      - name: Build (reference model, SystemVerilog, simulators, tests, firmware)
+        run: OUT=$PWD/build sh tools/build.sh ooo,inorder
+      - name: Co-simulation tests
+        run: SILICON_BUILD=$PWD/build SILICON_RANDOM=30 python3 -m pytest tests -q
+
+  synth:
+    name: Yosys synthesis of the small configuration (area and depth)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Yosys and Java
+        run: sudo apt-get update && sudo apt-get install -y yosys openjdk-17-jdk-headless
+      - name: Install sbt
+        run: sh tools/ci-setup.sh sbt
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/coursier
+            ~/.ivy2/cache
+            ~/.sbt
+            ~/.cache/llvm-firtool
+          key: deps-synth-${{ hashFiles('rtl/build.sbt') }}
+      - name: Chisel -> SystemVerilog
+        run: cd rtl && sbt "runMain silicon.Main $GITHUB_WORKSPACE/build/generated small" < /dev/null
+      - name: Synthesize
+        run: python3 eval/synth.py build/generated small --no-fpga
+
+  viewer:
+    name: Pipeline viewer (TypeScript)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: cd viewer && npm ci && npm test

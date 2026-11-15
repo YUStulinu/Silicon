@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build (WSL)",
+      "type": "shell",
+      "command": "wsl -d Ubuntu-24.04 -- bash -lc 'cd /mnt/c/VSCode/ProiecteVSCode/Silicon && OUT=build sh tools/build.sh'",
+      "problemMatcher": []
+    },
+    {
+      "label": "co-simulation tests (WSL)",
+      "type": "shell",
+      "command": "wsl -d Ubuntu-24.04 -- bash -lc 'cd /mnt/c/VSCode/ProiecteVSCode/Silicon && SILICON_BUILD=build python3 -m pytest tests -q'",
+      "problemMatcher": []
+    },
+    {
+      "label": "pipeline viewer",
+      "type": "shell",
+      "command": "cd viewer && npm install && npx tsc -p . && python -m http.server 8765",
+      "problemMatcher": []
+    }
+  ]
+}

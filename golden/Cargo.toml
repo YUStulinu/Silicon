@@ -1,0 +1,22 @@
+[package]
+name = "golden"
+version = "0.1.0"
+edition = "2021"
+description = "Silicon's reference model: Rivet, stepped one instruction at a time and compared with the processor's commits"
+license = "MIT"
+
+[lib]
+crate-type = ["rlib", "staticlib"]
+
+[[bin]]
+name = "golden"
+path = "src/main.rs"
+
+[dependencies]
+# The RISC-V emulator from github.com/YUStulinu/Rivet, used as the golden model.
+rivet = { git = "https://github.com/YUStulinu/Rivet", rev = "95b874b5e66d45869157d26aa7e54eb27ca3e8dc" }
+
+[profile.release]
+opt-level = 3
+debug = false
+panic = "abort"

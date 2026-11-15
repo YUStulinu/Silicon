@@ -1,0 +1,13 @@
+build/
+third_party/
+rtl/target/
+rtl/project/target/
+rtl/project/project/
+rtl/.bsp/
+rtl/test_run_dir/
+golden/target/
+viewer/node_modules/
+viewer/dist/
+__pycache__/
+.pytest_cache/
+*.vcd
