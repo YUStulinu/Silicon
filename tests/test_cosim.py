@@ -24,11 +24,11 @@ RANDOM = int(os.environ.get("SILICON_RANDOM", "40"))
 CC = os.environ.get("RISCV_CC", "riscv64-unknown-elf-gcc")
 
 
-def sim(cfg: str, elf: str, *extra: str, env: dict | None = None, timeout: int = 600):
+def sim(cfg: str, elf: str, *extra: str, env: dict | None = None, timeout: int = 600, quiet: bool = True):
     with tempfile.NamedTemporaryFile(suffix=".json", delete=False) as f:
         stats = f.name
     p = subprocess.run(
-        [os.path.join(BUILD, f"sim-{cfg}"), elf, "--cosim", "--quiet", "--stats", stats, *extra],
+        [os.path.join(BUILD, f"sim-{cfg}"), elf, "--cosim", *(["--quiet"] if quiet else []), "--stats", stats, *extra],
         capture_output=True,
         text=True,
         timeout=timeout,
@@ -72,7 +72,8 @@ def test_isa(cfg, elf):
 @pytest.mark.parametrize("cfg", CONFIGS)
 @pytest.mark.parametrize("elf", FIRMWARE, ids=lambda e: os.path.basename(e)[:-4])
 def test_firmware(cfg, elf):
-    p, s = sim(cfg, elf, timeout=1800)
+    # not quiet: the program's UART output is what says it checked its result
+    p, s = sim(cfg, elf, timeout=1800, quiet=False)
     name = os.path.basename(elf)[:-4]
     assert s["pass"], f"{s['error']} {p.stdout[-500:]}"
     assert f"{name}: OK" in p.stdout
